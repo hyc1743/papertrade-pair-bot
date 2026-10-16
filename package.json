@@ -1,0 +1,22 @@
+{
+  "name": "papertrade-pair-bot",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=24.0.0" },
+  "scripts": {
+    "start": "env -u PAPERTRADE_WALLET_A_PRIVATE_KEY -u PAPERTRADE_WALLET_B_PRIVATE_KEY node --env-file=.env --import tsx src/cli.ts run --live --config config.example.json --opening-at 2026-10-10T14:00:00Z",
+    "bot:status": "tsx src/cli.ts status --state-dir ./data",
+    "bot:checkpoint": "tsx src/cli.ts checkpoint --state-dir ./data",
+    "bot:retarget": "tsx src/cli.ts retarget --config config.example.json --state-dir ./data",
+    "bot:optimize": "tsx src/cli.ts optimize-close --config config.example.json --state-dir ./data",
+    "bot:stop": "tsx src/cli.ts stop --state-dir ./data",
+    "cli": "tsx src/cli.ts",
+    "typecheck": "tsc --noEmit && tsc -p tsconfig.test.json",
+    "build": "tsc",
+    "test": "tsx --test test/*.test.ts",
+    "check:read": "tsx src/read-check.ts"
+  },
+  "dependencies": { "viem": "^2.38.0", "ws": "^8.18.3", "zod": "^4.1.0" },
+  "devDependencies": { "@types/node": "^24.0.0", "@types/ws": "^8.18.1", "tsx": "^4.20.0", "typescript": "^5.9.0" }
+}
